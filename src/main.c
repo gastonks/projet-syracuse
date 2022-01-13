@@ -12,32 +12,27 @@ int max (int a, int b) {
 int main(int argc, char *argv[]){
 
 
-	//printf("argc=%i", argc);
-
-	//printf("\n%s; %s\n", argv[1], argv[2]);
-
-
-	int un = atoi(argv[1]);
-
-	if((argc < 3 || argc > 3)){
-		printf("Veuillez entrer au moins 2 arguments.\nExemple: ./syracuse [NOMBRE] [FICHIER-SORTIE]\n");
+	if(argv[1] == NULL){
+		printf("Veuillez entrer exactement 2 arguments dont un nombre positif.\nExemple: ./syracuse [NOMBRE] [FICHIER-SORTIE]\n");
 		exit(-1);
 	}else{
-		if(un <= 0){
-			printf("Veuillez entrer au moins 2 arguments et un nombre strictement positif.\nExemple: ./syracuse [NOMBRE] [FICHIER-SORTIE]\n");
+		if(argc != 3 || atoi(argv[1]) <= 0 ){
+			printf("argc=%i ; argv[1]=%i ; argv[2]=%s", argc, atoi(argv[1]), argv[2]);
+			printf("\nVeuillez entrer exactement 2 arguments dont un nombre positif.\nExemple: ./syracuse [NOMBRE] [FICHIER-SORTIE]\n");
 			exit(-1);
 		}else{
 
 			//printf("\n%s; %s\n", argv[1], argv[2]);
 
-		
+			int un = atoi(argv[1]);
+			
 			FILE* file = fopen(argv[2], "w");
 			if(file == NULL){
 				printf("Fichier de sortie non cree.");
 				exit(-1);
 			}
 
-		
+			
 			int altiMax = un;
 			int dureeVol = 0;
 			int compteur = 0;
@@ -53,8 +48,8 @@ int main(int argc, char *argv[]){
 			fprintf(file, "n Un");
 			printf("\n%i %i", compteur, altitudePrecedent);
 			fprintf(file, "\n%i %i", compteur, altitudePrecedent);
-			
-			do{
+				
+			while (altitudePrecedent != 1){
 
 				if(altitudePrecedent % 2 == 0){
 					altitudeSuivant = altitudePrecedent/2;
@@ -72,18 +67,18 @@ int main(int argc, char *argv[]){
 					dureeAltitudeMax = max(dureeAltitudeMax, tmpDureeAltitude);
 					dureeAltitude = 0;
 				}
-				
+					
 
 				altitudePrecedent = altitudeSuivant;
 				compteur++;
-				
+					
 				/*	Affichage dans le terminal du 'n' et de la valeur de Un	*/
 				printf("\n%i %i", compteur, altitudePrecedent);
 
 				/*	Ecriture dans le fichier du 'n' et de la valeur de Un	*/
 				fprintf(file, "\n%i %i", compteur, altitudePrecedent);
 
-			} while (altitudePrecedent != 1);
+			}
 
 			/*	Affichage dans le terminal de l'altitude maximal, de la duree de vol et de la duree de vol en altitude	*/
 			printf("\nAltiMax=%i", altiMax);

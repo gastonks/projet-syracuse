@@ -1,7 +1,7 @@
 # commande pour compiler
 CC=gcc
 CP=cp
-RM=rm -ir
+RM=rm -r
 CFLAGS=-Wall
 
 #nom des dossiers
@@ -9,6 +9,7 @@ SRC=src
 OBJ=obj
 DATA=data
 SAVE=save
+IMG=img
 
 #arguments pour trouver les éléments dans les dossiers
 SRCS=$(wildcard $(SRC)/*.c)
@@ -50,5 +51,7 @@ give:
 	@$(CP) Makefile $(nameArchive)/
 
 clean:
-	$(RM) $(BINDIR)/* $(OBJ)/* || echo Rien a supprimer
-	$(RM) $(nameArchive) || echo Rien a supprimer
+#$(RM) $(BINDIR)/* $(OBJ)/* || echo Rien a supprimer
+#$(RM) $(nameArchive) || echo Rien a supprimer
+	$(RM) $(DATA)/* || echo Rien a supprimer
+	$(RM) $(IMG)/* || echo Rien a supprimer
