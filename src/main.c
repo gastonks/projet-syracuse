@@ -88,7 +88,7 @@ int main(int argc, char *argv[]){
 			/*	Ecriture dans le fichier de l'altitude maximal, de la duree de vol et de la duree de vol en altitude	*/
 			fprintf(file, "\nAltiMax=%i", altiMax);
 			fprintf(file, "\nDureeVol=%i",dureeVol);
-			fprintf(file, "\nDureeAltitude=%i\n", dureeAltitudeMax);
+			fprintf(file, "\nDureeAltitude=%i", dureeAltitudeMax);
 
 			fclose(file);
 		}
